@@ -1,0 +1,25 @@
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  when: on_success
+  only:
+    - master
+    image: docker:stable
+    services:
+    docker:dind
+    
+    script:
+    - docker login -u deploy-token-to-registry -p $CI_TOKEN registry.gitlab.com
+    - docker build -t registry.gitlab.com/Beliaardi/ci-cd
+    - docker push -t registry.gitlab.com/Beliaardi/ci-cd
+
+    deploy:
+    stage : deploy
+    tags : {exemple-deployment}
+    scripts : 
+      - docker login -u deploy-token-to-registry -p $CI_TOKEN registry.gitlab.com
+      - docker pull docker push -t registry.gitlab.com/Beliaardi/ci-cd

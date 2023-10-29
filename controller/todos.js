@@ -50,7 +50,7 @@ exports.deleteTodo = async (req, res) => {
     const todoId = req.params.id;
     const todo = await todos.findByPk(todoId);
     
-    if (todo) {
+    if (todos) {
       // Lakukan soft delete dengan menandai todo sebagai dihapus
       await todo.update({ deletedAt: new Date() });
       res.json({ message: 'Todo berhasil dihapus (soft delete)' });
@@ -62,4 +62,4 @@ exports.deleteTodo = async (req, res) => {
   }
 };
 
-module.exports = controller;
+// module.exports = controller;

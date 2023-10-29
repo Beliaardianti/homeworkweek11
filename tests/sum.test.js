@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const request = require('supertest');
 const db = require('../models/todos'); 
+const request = require('supertest');
 
 describe('API Endpoint Testing', () => {
   beforeAll(async () => {

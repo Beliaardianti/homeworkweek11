@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
 
-const bodyParser = require('body-parser');
 const Sequelize = require('sequelize');
+const bodyParser = require('body-parser');
 const router = require('./routes/todos-router');
 const db = require('./config/db')
+require('dotenv').config()
 const port = process.env.PORT || 3000
 app.use('/router', router)
 // parse application/json
